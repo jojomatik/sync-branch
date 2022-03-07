@@ -1,4 +1,4 @@
-name: 'sync-branch'
+name: 'Synchronize Branch'
 author: 'jojomatik'
 description: 'Syncs one branch to another branch'
 inputs:
