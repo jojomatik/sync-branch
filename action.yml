@@ -51,11 +51,11 @@ runs:
       shell: bash
     - name: Push ${{ inputs.source }} to ${{ inputs.target }}
       if: inputs.strategy == 'force'
-      run: git push --force ${{ inputs.source }}:${{ inputs.target }}
+      run: git push --force origin ${{ inputs.source }}:${{ inputs.target }}
       shell: bash
     - name: Push ${{ inputs.source }} to ${{ inputs.target }}
       if: inputs.strategy == 'fail'
-      run: git push ${{ inputs.source }}:${{ inputs.target }}
+      run: git push origin ${{ inputs.source }}:${{ inputs.target }}
       shell: bash
 
 branding:
