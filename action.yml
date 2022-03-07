@@ -16,10 +16,10 @@ inputs:
     default: "merge"
   git_committer_name:
     description: 'The name to create merge commits with'
-    required: true
+    required: false
   git_committer_email:
     description: 'The email to create merge commits with'
-    required: true
+    required: false
   github_token:
     description: 'The access token to push to the repository'
     required: false

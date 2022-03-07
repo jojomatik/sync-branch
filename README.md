@@ -32,10 +32,10 @@ jobs:
           #   Default: `merge`
           strategy: "merge"
           # The name to create merge commits with
-          #   Required
+          #   Required, if strategy `merge` is used
           git_committer_name: ${{ secrets.BOT_GIT_NAME }}
           # The email to create merge commits with
-          #   Required
+          #   Required, if strategy `merge` is used
           git_committer_email: ${{ secrets.BOT_GIT_EMAIL }}
           # The access token to push to the repository
           #   Optional
