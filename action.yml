@@ -1,4 +1,5 @@
-name: 'Sync Branch'
+name: 'sync-branch'
+author: 'jojomatik'
 description: 'Syncs one branch to another branch'
 inputs:
   source:
@@ -56,3 +57,7 @@ runs:
       if: inputs.strategy == 'fail'
       run: git push ${{ inputs.source }}:${{ inputs.target }}
       shell: bash
+
+branding:
+  icon: 'git-merge'
+  color: 'white'
