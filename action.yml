@@ -1,0 +1,44 @@
+name: 'Sync Branch'
+description: 'Syncs one branch to another branch'
+inputs:
+  source:
+    description: 'The branch to sync from'
+    required: false
+    default: ${{ github.ref_name }}
+  target:
+    description: 'The branch to sync to'
+    required: false
+    default: 'beta'
+  git_committer_name:
+    description: 'The name to create merge commits with'
+    required: true
+  git_committer_email:
+    description: 'The email to create merge commits with'
+    required: true
+  github_token:
+    description: 'The access token to push to the repository'
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ inputs.source }}
+        fetch-depth: 0
+        token: ${{ inputs.github_token }}
+    - name: Set committer identity
+      run: |
+        git config user.name ${{ inputs.git_committer_name }}
+        git config user.email ${{ inputs.git_committer_email }}
+      shell: bash
+    - name: Checkout ${{ inputs.target }}
+      run: git checkout ${{ inputs.target }}
+      shell: bash
+    - name: Merge ${{ inputs.source }} into ${{ inputs.target }}
+      run: git merge ${{ inputs.source }}
+      shell: bash
+    - name: Push ${{ inputs.target }}
+      run: git push
+      shell: bash
