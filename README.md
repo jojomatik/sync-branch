@@ -19,11 +19,24 @@ jobs:
       - name: Keep `v1` up to date with `main` (fast-forward enabled)
         uses: jojomatik/sync-branch@v1
         with:
-          source: "main" #optional, default: github.ref_name
-          target: "v1" #optional, default: `beta`
-          git_committer_name: ${{ secrets.BUMP_GIT_NAME }} #required
-          git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }} #required
-          github_token: ${{ secrets.GH_TOKEN }} #optional, default: github.token
+          # The branch to sync from
+          #   Optional
+          #   Default: github.ref_name
+          source: "main"
+          # The branch to sync to
+          #   Optional
+          #   Default: `beta`
+          target: "v1"
+          # The name to create merge commits with
+          #   Required
+          git_committer_name: ${{ secrets.BOT_GIT_NAME }}
+          # The email to create merge commits with
+          #   Required
+          git_committer_email: ${{ secrets.BOT_GIT_EMAIL }}
+          # The access token to push to the repository
+          #   Optional
+          #   Default: github.ref_name
+          github_token: ${{ secrets.GH_TOKEN }}
 ```
 
 ## Licensing
