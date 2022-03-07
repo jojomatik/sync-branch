@@ -27,6 +27,10 @@ jobs:
           #   Optional
           #   Default: `beta`
           target: "v1"
+          # The strategy to use, if fast-forward is not possible (merge, force, fail).
+          #   Optional
+          #   Default: `merge`
+          strategy: "merge"
           # The name to create merge commits with
           #   Required
           git_committer_name: ${{ secrets.BOT_GIT_NAME }}

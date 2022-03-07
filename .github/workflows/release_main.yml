@@ -6,11 +6,13 @@ jobs:
     name: Sync branch `beta` to `main` (fast-forward enabled)
     runs-on: ubuntu-latest
     steps:
+      # Warning: `beta` MUST include all commits from `main` otherwise the push will fail. This behaviour is not a bug and implemented by design.
       - name: Update `main` to the same state as `beta` (fast-forward enabled)
         uses: jojomatik/sync-branch@beta
         with:
           source: "beta"
           target: "main"
+          strategy: "fail"
           git_committer_name: ${{ secrets.BUMP_GIT_NAME }}
           git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }}
           github_token: ${{ secrets.GH_TOKEN }}

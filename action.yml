@@ -9,6 +9,10 @@ inputs:
     description: 'The branch to sync to'
     required: false
     default: 'beta'
+  strategy:
+    description: 'The strategy to use, if fast-forward is not possible (merge, force, fail)'
+    required: false
+    default: "merge"
   git_committer_name:
     description: 'The name to create merge commits with'
     required: true
@@ -37,8 +41,18 @@ runs:
       run: git checkout ${{ inputs.target }}
       shell: bash
     - name: Merge ${{ inputs.source }} into ${{ inputs.target }}
+      if: inputs.strategy == 'merge'
       run: git merge ${{ inputs.source }}
       shell: bash
     - name: Push ${{ inputs.target }}
+      if: inputs.strategy == 'merge'
       run: git push
+      shell: bash
+    - name: Push ${{ inputs.source }} to ${{ inputs.target }}
+      if: inputs.strategy == 'force'
+      run: git push --force ${{ inputs.source }}:${{ inputs.target }}
+      shell: bash
+    - name: Push ${{ inputs.source }} to ${{ inputs.target }}
+      if: inputs.strategy == 'fail'
+      run: git push ${{ inputs.source }}:${{ inputs.target }}
       shell: bash
