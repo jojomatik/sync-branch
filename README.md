@@ -23,7 +23,7 @@ jobs:
           target: "v1" #optional, default: `beta`
           git_committer_name: ${{ secrets.BUMP_GIT_NAME }} #required
           git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }} #required
-          github_token: ${{ secrets.GH_TOKEN }} #optional, default: secrets.GITHUB_TOKEN
+          github_token: ${{ secrets.GH_TOKEN }} #optional, default: github.token
 ```
 
 ## Licensing
