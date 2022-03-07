@@ -34,6 +34,7 @@ runs:
         fetch-depth: 0
         token: ${{ inputs.github_token }}
     - name: Set committer identity
+      if: inputs.strategy == 'merge'
       run: |
         git config user.name ${{ inputs.git_committer_name }}
         git config user.email ${{ inputs.git_committer_email }}
