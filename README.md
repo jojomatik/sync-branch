@@ -5,14 +5,14 @@ Sync one branch to another
 
 ## Usage
 ```yml
-name: Update another branch on push to `main`
-on:
-   push:
-      branches: [main]
+name: Update another branch on each release
+release:
+  types:
+    - published
 
 jobs:
-  sync_main:
-    if: ${{ github.ref == 'refs/heads/main' }}
+  sync_release_to_v1:
+    if: ${{ startsWith(github.ref, 'refs/tags/v1') && !contains(github.ref, 'beta') }}
     name: Sync branch `main` to other branches (fast-forward enabled)
     runs-on: ubuntu-latest
     steps:

@@ -40,9 +40,9 @@ jobs:
           GIT_COMMITTER_NAME: ${{ secrets.BUMP_GIT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.BUMP_GIT_EMAIL }}
         run: semantic-release
-  sync_main:
+  sync_main_to_beta:
     if: ${{ github.ref == 'refs/heads/main' }}
-    name: Sync branch `main` to other branches (fast-forward enabled)
+    name: Sync branch `main` to `beta` (fast-forward enabled)
     runs-on: ubuntu-latest
     needs:
       - semantic-release
@@ -53,9 +53,17 @@ jobs:
           git_committer_name: ${{ secrets.BUMP_GIT_NAME }}
           git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }}
           github_token: ${{ secrets.GH_TOKEN }}
+  sync_main_to_v1:
+    if: ${{ startsWith(github.ref, 'refs/tags/v1') && !contains(github.ref, 'beta') }}
+    name: Sync branch `main` to `v1` (fast-forward enabled)
+    runs-on: ubuntu-latest
+    needs:
+      - semantic-release
+    steps:
       - name: Keep `v1` up to date with `main` (fast-forward enabled)
         uses: jojomatik/sync-branch@beta
         with:
+          source: "main"
           target: "v1"
           git_committer_name: ${{ secrets.BUMP_GIT_NAME }}
           git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }}
