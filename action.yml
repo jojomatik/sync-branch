@@ -50,6 +50,14 @@ runs:
       if: inputs.strategy == 'merge'
       run: git push
       shell: bash
+    - name: Rebase ${{ inputs.target }} onto ${{ inputs.source }}
+      if: inputs.strategy == 'rebase'
+      run: git rebase ${{ inputs.source }} ${{ inputs.target }}
+      shell: bash
+    - name: Force push ${{ inputs.target }}
+      if: inputs.strategy == 'rebase'
+      run: git push --force origin ${{ inputs.target }}
+      shell: bash
     - name: Force push ${{ inputs.source }} to ${{ inputs.target }}
       if: inputs.strategy == 'force'
       run: git push --force origin ${{ inputs.source }}:${{ inputs.target }}
