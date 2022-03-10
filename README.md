@@ -30,6 +30,12 @@ jobs:
           # The strategy to use, if fast-forward is not possible (merge, force, fail).
           #   Optional
           #   Default: `merge`
+          #   Possible values:
+          #     - `merge`:  merge the source branch into the target branch
+          #     - `force`:  force push the source branch to the target branch (overrides any changes on the target 
+          #                 branch)
+          #     - `fail`:   pushes the source branch to the target branch, fails if the target branch contains changes 
+          #                 that are not present in the source branch
           strategy: "merge"
           # The name to create merge commits with
           #   Required, if strategy `merge` is used
