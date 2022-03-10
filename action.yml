@@ -50,7 +50,7 @@ runs:
       if: inputs.strategy == 'merge'
       run: git push
       shell: bash
-    - name: Push ${{ inputs.source }} to ${{ inputs.target }}
+    - name: Force push ${{ inputs.source }} to ${{ inputs.target }}
       if: inputs.strategy == 'force'
       run: git push --force origin ${{ inputs.source }}:${{ inputs.target }}
       shell: bash
