@@ -51,7 +51,7 @@ jobs:
           #                 the source version. All non-conflicting changes are reflected 
           #                 in the merge result.
           #     - `false`:  `merge` fails if any merge conflicts occur.
-          resolve_conflicts: "theirs"
+          resolve_conflicts: "target"
           # The name to create merge commits with
           #   Required, if strategy `merge` is used
           git_committer_name: ${{ secrets.BOT_GIT_NAME }}
