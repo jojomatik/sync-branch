@@ -40,7 +40,7 @@ runs:
         git config user.email ${{ inputs.git_committer_email }}
       shell: bash
     - name: Checkout ${{ inputs.target }}
-      if: inputs.strategy != 'force'
+      if: inputs.strategy == 'merge'
       run: git checkout ${{ inputs.target }}
       shell: bash
     - name: Merge ${{ inputs.source }} into ${{ inputs.target }}
