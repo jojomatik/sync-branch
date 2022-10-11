@@ -40,6 +40,18 @@ jobs:
           #                 target branch contains changes that are not present in the 
           #                 source branch
           strategy: "merge"
+          # The changes to accept, if strategy `merge` leads to merge conflicts
+          #   Optional
+          #   Default: `target`
+          #   Possible values:
+          #     - `target`: forces conflicts to be auto-resolved cleanly by favoring
+          #                 the target version. All non-conflicting changes are reflected 
+          #                 in the merge result.
+          #     - `source`: forces conflicts to be auto-resolved cleanly by favoring
+          #                 the source version. All non-conflicting changes are reflected 
+          #                 in the merge result.
+          #     - `false`:  `merge` fails if any merge conflicts occur.
+          resolve_conflicts: "theirs"
           # The name to create merge commits with
           #   Required, if strategy `merge` is used
           git_committer_name: ${{ secrets.BOT_GIT_NAME }}

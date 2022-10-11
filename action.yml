@@ -14,6 +14,10 @@ inputs:
     description: 'The strategy to use, if fast-forward is not possible (merge, force, fail)'
     required: false
     default: "merge"
+  resolve_conflicts:
+    description: 'The changes to accept, if strategy `merge` leads to merge conflicts (target, source, false)'
+    required: false
+    default: "theirs"
   git_committer_name:
     description: 'The name to create merge commits with'
     required: false
@@ -45,7 +49,7 @@ runs:
       shell: bash
     - name: Merge ${{ inputs.source }} into ${{ inputs.target }}
       if: inputs.strategy == 'merge'
-      run: git merge ${{ inputs.source }}
+      run: git merge ${{ inputs.source }} ${{ inputs.resolve_conflicts != 'false' && format('--strategy-option {0}', inputs.resolve_conflicts == 'target' && 'ours' || 'theirs') || '' }}
       shell: bash
     - name: Push ${{ inputs.target }}
       if: inputs.strategy == 'merge'
