@@ -75,6 +75,4 @@ jobs:
           source: ${{ github.ref }}
           target: ${{ format('refs/heads/{0}', steps.major.outputs.major) }}
           strategy: "fail"
-          git_committer_name: ${{ secrets.BUMP_GIT_NAME }}
-          git_committer_email: ${{ secrets.BUMP_GIT_EMAIL }}
           github_token: ${{ secrets.GH_TOKEN }}
