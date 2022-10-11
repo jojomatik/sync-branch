@@ -48,7 +48,7 @@ jobs:
           git_committer_email: ${{ secrets.BOT_GIT_EMAIL }}
           # The access token to push to the repository
           #   Optional
-          #   Default: github.ref_name
+          #   Default: github.token
           github_token: ${{ secrets.GH_TOKEN }}
 ```
 
