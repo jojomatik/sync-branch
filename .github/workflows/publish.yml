@@ -69,10 +69,17 @@ jobs:
       - name: Get major version
         id: major
         run: version=${{ steps.version.outputs.version }} && echo ::set-output name=major::${version%%.*}
-      - name: Keep `vx` up to date with new release
+      - name: Keep `vx`-branch up to date with new release
         uses: jojomatik/sync-branch@beta
         with:
           source: ${{ github.ref }}
           target: ${{ format('refs/heads/{0}', steps.major.outputs.major) }}
           strategy: "fail"
+          github_token: ${{ secrets.GH_TOKEN }}
+      - name: Keep `vx`-tag up to date with new release
+        uses: jojomatik/sync-branch@beta
+        with:
+          source: ${{ github.ref }}
+          target: ${{ format('refs/tags/{0}', steps.major.outputs.major) }}
+          strategy: "force"
           github_token: ${{ secrets.GH_TOKEN }}
