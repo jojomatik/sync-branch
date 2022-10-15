@@ -17,7 +17,7 @@ inputs:
   resolve_conflicts:
     description: 'The changes to accept, if strategy `merge` leads to merge conflicts (target, source, false)'
     required: false
-    default: "theirs"
+    default: "target"
   git_committer_name:
     description: 'The name to create merge commits with'
     required: false
