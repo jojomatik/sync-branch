@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Keep `v1` up to date with `main` (fast-forward enabled)
-        uses: jojomatik/sync-branch@v1
+        uses: jojomatik/sync-branch@v2
         with:
           # The branch to sync from
           #   Optional
