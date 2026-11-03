@@ -32,6 +32,11 @@
       "automergeStrategy": "rebase",
     },
     {
+      "matchManagers": ["github-actions"],
+      "matchPackageNames": ["jojomatik/sync-branch"],
+      "pinDigests": false,
+    },
+    {
       "matchUpdateTypes": ["major"],
       "automerge": false,
     },
