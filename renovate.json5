@@ -21,6 +21,11 @@
       "addLabels": ["scope:deps"],
     },
     {
+      "matchManagers": ["github-actions"],
+      "matchFileNames": [".github/**"],
+      "overrideDepType": "devDependencies",
+    },
+    {
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
       "automerge": true,
