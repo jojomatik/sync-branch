@@ -48,4 +48,9 @@
       "automerge": false,
     },
   ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "automergeStrategy": "rebase",
+  },
 }
