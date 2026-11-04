@@ -19,19 +19,10 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: '26'
-      - name: Cache npm cache
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6
-        env:
-          cache-name: cache-npm-cache
-        with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-
-      - name: Install semantic-release globally
-        run: sudo npm install --prefer-offline --no-audit --global semantic-release@^17.4.4 @semantic-release/exec@^5.0.0 @semantic-release/git@^9.0.0 conventional-changelog-conventionalcommits@^4.6.3
+          # Caches `~/.npm`, keyed on the hash of `package-lock.json`
+          cache: npm
+      - name: Install semantic-release
+        run: npm ci --no-audit --no-fund
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
@@ -39,7 +30,7 @@ jobs:
           GIT_AUTHOR_EMAIL: ${{ secrets.BUMP_GIT_EMAIL }}
           GIT_COMMITTER_NAME: ${{ secrets.BUMP_GIT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.BUMP_GIT_EMAIL }}
-        run: semantic-release
+        run: npx --no-install semantic-release
   sync_main_to_beta:
     if: ${{ github.ref == 'refs/heads/main' }}
     name: Sync branch `main` to `beta` (fast-forward enabled)

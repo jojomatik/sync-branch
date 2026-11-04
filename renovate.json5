@@ -9,6 +9,7 @@
   "separateMultipleMajor": true,
   "minimumReleaseAge": "7 days",
   "internalChecksFilter": "strict",
+  "lockFileMaintenance": { "enabled": true, "automerge": true },
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies", "dev-dependencies", "dev"],

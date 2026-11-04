@@ -1,0 +1,12 @@
+{
+  "name": "sync-branch-release",
+  "private": true,
+  "description": "Tooling for releasing sync-branch with semantic-release",
+  "license": "MIT",
+  "devDependencies": {
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
+    "conventional-changelog-conventionalcommits": "^4.6.3",
+    "semantic-release": "^17.4.4"
+  }
+}
