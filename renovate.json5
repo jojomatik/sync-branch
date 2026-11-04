@@ -18,12 +18,14 @@
     },
     {
       "matchDepTypes": ["dependencies"],
+      "matchFileNames": ["!/^\\.github\\//"],
       "addLabels": ["scope:deps"],
     },
     {
       "matchManagers": ["github-actions"],
       "matchFileNames": [".github/**"],
-      "overrideDepType": "devDependencies",
+      "semanticCommitScope": "deps-dev",
+      "addLabels": ["scope:deps-dev"],
     },
     {
       "matchUpdateTypes": ["minor", "patch"],
