@@ -1,8 +1,13 @@
 {
   "name": "sync-branch-release",
   "private": true,
+  "type": "module",
   "description": "Tooling for releasing sync-branch with semantic-release",
   "license": "MIT",
+  "scripts": {
+    "semantic-release": "semantic-release",
+    "test:release-notes": "node scripts/check-release-notes.ts"
+  },
   "devDependencies": {
     "@semantic-release/exec": "^5.0.0",
     "@semantic-release/git": "^9.0.0",

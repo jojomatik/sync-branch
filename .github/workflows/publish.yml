@@ -30,7 +30,7 @@ jobs:
           GIT_AUTHOR_EMAIL: ${{ secrets.BUMP_GIT_EMAIL }}
           GIT_COMMITTER_NAME: ${{ secrets.BUMP_GIT_NAME }}
           GIT_COMMITTER_EMAIL: ${{ secrets.BUMP_GIT_EMAIL }}
-        run: npx --no-install semantic-release
+        run: npm run semantic-release
   sync_main_to_beta:
     if: ${{ github.ref == 'refs/heads/main' }}
     name: Sync branch `main` to `beta` (fast-forward enabled)
