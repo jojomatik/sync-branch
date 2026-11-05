@@ -22,7 +22,7 @@ jobs:
           # Caches `~/.npm`, keyed on the hash of `package-lock.json`
           cache: npm
       - name: Install semantic-release
-        run: npm ci --no-audit --no-fund
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
