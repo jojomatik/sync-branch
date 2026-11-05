@@ -1,12 +1,10 @@
-module.exports = {
+export default {
   plugins: [
     [
       "@semantic-release/commit-analyzer",
       {
         preset: "angular",
-        releaseRules: [
-          { type: "build", scope: "deps", release: "patch" },
-        ],
+        releaseRules: [{ type: "build", scope: "deps", release: "patch" }],
       },
     ],
     [

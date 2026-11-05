@@ -1,17 +1,16 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { mkdtempSync, rmSync } from "node:fs";
-import { createRequire } from "node:module";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import semanticRelease from "semantic-release";
+import config from "../release.config.ts";
 
 type ReleasePlugin = string | [string, Record<string, unknown>];
 type ReleaseConfig = { plugins: ReleasePlugin[] };
 
-const require = createRequire(import.meta.url);
-const config = require("../release.config.cjs") as ReleaseConfig;
+const releaseConfig = config as ReleaseConfig;
 
 async function checkReleaseNotes(): Promise<void> {
   const cwd = mkdtempSync(join(tmpdir(), "sync-branch-release-notes-"));
@@ -38,7 +37,7 @@ async function checkReleaseNotes(): Promise<void> {
       git("commit", "--allow-empty", "-m", message);
     }
 
-    const plugins = config.plugins.filter(
+    const plugins = releaseConfig.plugins.filter(
       (plugin): plugin is [string, Record<string, unknown>] =>
         Array.isArray(plugin) &&
         [
