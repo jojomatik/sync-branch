@@ -5,12 +5,10 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import semanticRelease from "semantic-release";
-import config from "../release.config.ts";
+import releaseConfig from "../release.config.ts";
 
 type ReleasePlugin = string | [string, Record<string, unknown>];
 type ReleaseConfig = { plugins: ReleasePlugin[] };
-
-const releaseConfig = config as ReleaseConfig;
 
 async function checkReleaseNotes(): Promise<void> {
   const cwd = mkdtempSync(join(tmpdir(), "sync-branch-release-notes-"));
@@ -37,7 +35,7 @@ async function checkReleaseNotes(): Promise<void> {
       git("commit", "--allow-empty", "-m", message);
     }
 
-    const plugins = releaseConfig.plugins.filter(
+    const plugins = (releaseConfig as ReleaseConfig).plugins.filter(
       (plugin): plugin is [string, Record<string, unknown>] =>
         Array.isArray(plugin) &&
         [
