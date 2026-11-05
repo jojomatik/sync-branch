@@ -5,7 +5,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import semanticRelease from "semantic-release";
-import releaseConfig from "../release.config.ts";
+import releaseConfig from "../release.config.js";
 
 type ReleasePlugin = string | [string, Record<string, unknown>];
 type ReleaseConfig = { plugins: ReleasePlugin[] };
